@@ -54,7 +54,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::findOrFail($id);
         $produto->delete();
-        return redirect()->route('produtos.index')->with('alert-success','Product hasbeen deleted!');
+        return redirect()->route('produtos.index')->with('alert-success','Produto foi deletado!');
     }
 }
 }

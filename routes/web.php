@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,26 +9,39 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('clinica', 'ClinicasController');
+Route::resource('usuario', 'UsuarioController');
+Route::get('/listarClinicas', 'UsuarioController@listarClinicas');
+Route::get('/listarClinicas', 'HomeController@listarClinicas');
+Route::get('/busca', 'SearchController@busca');
+Route::get('/search', 'ClinicasController@find');
+Route::post('/mapa', 'ClinicasController@mapa');
+Route::get('/', function () {
+    return view('search');
+});
+Route::get('/base', function () {
+    return view('base');
+});
+
+Route::get('/chat', 'ChatController@index')->name('chat');
+Route::get('/chat/messages', 'ChatMessageController@index');
+Route::post('/chat/messages', 'ChatMessageController@store');
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/usuarios', 'UsuarioController@index');
-Route::post('/usuarios', 'UsuarioController@store');
-Route::delete('/usuarios', 'UsuarioController@destroy');
-Route::put('/usuarios/{id}', 'UsuarioController@update');
+Route::resource('usuarios', 'UsuarioController');
+//Route::resource('fornecedores', 'FornecedorController')->middleware('auth');
+Route::resource('fornecedores', 'FornecedorController');
+Route::get('/listarFornecedores', 'FornecedorController@listarFornecedores');
 
-Route::get('/fornecedores', 'FornecedorController@index');
-Route::post('/fornecedores', 'FornecedorController@store');
-Route::delete('/fornecedores', 'FornecedorController@destroy');
-Route::put('/fornecedores/{id}', 'FornecedorController@update');
-
-Route::get('/produtos', 'ProdutoController@index');
-Route::post('/produtos', 'ProdutoController@store');
-Route::delete('/produtos', 'ProdutoController@destroy');
-Route::put('/produtos/{id}', 'ProdutoController@update');
+//Route::resource('produtos', 'ProdutoController')->middleware('auth');
+Route::resource('produtos', 'ProdutoController');
+Route::get('/listarProdutos', 'ProdutoController@listarProdutos');
+Route::get('/total'. 'ProdutoController@total');

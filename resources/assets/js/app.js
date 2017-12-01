@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./buscarCep.js');
 
 window.Vue = require('vue');
 
@@ -14,8 +15,11 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('algolia', require('./components/algolia.vue'));
+Vue.component('chat', require('./components/chat/Chat.vue'));
+Vue.component('chat-messages', require('./components/chat/Messages.vue'));
+Vue.component('chat-message', require('./components/chat/Message.vue'));
+Vue.component('chat-users', require('./components/chat/Users.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -2,9 +2,10 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Usuario::class, function (Faker $faker) {
+$factory->define(App\Fornecedor::class, function (Faker $faker) {
     return [
         'nome' => $faker->name,
         'endereco' => $faker->cityName,
-        'cnpj' => $faker->cnpj
+        'cnpj' => $faker->cnpj,
+    ];
 });

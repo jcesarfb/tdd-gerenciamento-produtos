@@ -22,10 +22,10 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario;
         $usuario->nome        = $request->nome;
-        $usuario->endereco	 = $request->endereco;
-        $usuario->cnpj		 = $request->cnpj;
+        $usuario->endereco   = $request->endereco;
+        $usuario->cnpj       = $request->cnpj;
         $usuario->save();
-        return redirect()->route('usuarios.index')->with('message', 'Usuario created successfully!');
+        return redirect()->route('usuarios.index')->with('message', 'Usuario criado com sucesso!');
     }
   
     public function show($id)
@@ -43,17 +43,17 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::findOrFail($id);
         $usuario->nome        = $request->nome;
-        $usuario->endereco	 = $request->endereco;
-        $usuario->cnpj		 = $request->cnpj;
+        $usuario->endereco   = $request->endereco;
+        $usuario->cnpj       = $request->cnpj;
         $usuario->save();
-        return redirect()->route('usuarios.index')->with('message', 'Usuario updated successfully!');
+        return redirect()->route('usuarios.index')->with('message', 'Usuario atualizado com sucesso!');
     }
   
     public function destroy($id)
     {
         $usuario = Usuario::findOrFail($id);
         $usuario->delete();
-        return redirect()->route('usuarios.index')->with('alert-success','Usuario hasbeen deleted!');
+        return redirect()->route('usuarios.index')->with('alert-success','Usuario foi deletado!');
     }
 }
 }

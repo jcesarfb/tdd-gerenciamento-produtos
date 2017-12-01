@@ -25,7 +25,7 @@ class FornecedorController extends Controller
         $fornecedor->endereco	 = $request->endereco;
         $fornecedor->cnpj		 = $request->cnpj;
         $fornecedor->save();
-        return redirect()->route('Fornecedores.index')->with('message', 'Fornecedor created successfully!');
+        return redirect()->route('Fornecedores.index')->with('message', 'Fornecedor criado com sucesso!');
     }
   
     public function show($id)
@@ -46,14 +46,14 @@ class FornecedorController extends Controller
         $fornecedor->endereco	 = $request->endereco;
         $fornecedor->cnpj		 = $request->cnpj;
         $fornecedor->save();
-        return redirect()->route('Fornecedores.index')->with('message', 'Fornecedor updated successfully!');
+        return redirect()->route('Fornecedores.index')->with('message', 'Fornecedor atualizado com sucesso!');
     }
   
     public function destroy($id)
     {
         $fornecedor = Fornecedor::findOrFail($id);
         $fornecedor->delete();
-        return redirect()->route('Fornecedores.index')->with('alert-success','Fornecedor hasbeen deleted!');
+        return redirect()->route('Fornecedores.index')->with('alert-success','Fornecedor foi deletado!');
     }
 }
 }

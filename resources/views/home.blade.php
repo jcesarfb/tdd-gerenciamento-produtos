@@ -1,23 +1,69 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+            @if (Route::has('login'))
+             <br>
+                <div class="col-md-12">
+                    <div class="content">
+                        <div class="title m-b-md">
+                        @if (Auth::check())
+                        Bem-vindo(a) <br> {{ Auth::user()->name }}
+                        @if((Auth::user()->tipo)== 1)
+                        <?php
+                            $id = Auth::user()->id;
+                        ?>
                         </div>
-                    @endif
-
-                    You are logged in!
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-12 button-cel">
+                        <a href="{{ url('/usuario/'.$id.'/edit')}}" class="btn btn-success">Editar Dados</a>
+                    </div>
+                    <div class="col-md-2 col-sm-12 button-cel">
+                        <a href="{{ url('/usuario/'.$id) }}" class="btn btn-warning">Cadastro</a>
+                    </div>
+                    <div class="col-md-2 col-sm-12 button-cel">
+                        <a href="{{ url('/listarClinicas')}}" class="btn btn-info">Clínicas</a>
+                    </div>
+                     <div class="col-md-2 col-sm-12 button-cel">
+                        <a href="/chat" class="btn btn-default">Chat</a>
+                    </div>
+                    <div class="col-md-2 col-sm-12 button-cel">                 
+                        {{ Form::open(array('url' => 'usuario/' . $id)) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            {{ Form::submit('Deletar conta', array('class' => 'btn btn-danger')) }}
+                        {{ Form::close() }}
+
+                        @elseif((Auth::user()->tipo)== 0)
+                        <?php
+                            $id = Auth::user()->id;
+                        ?>
+                    </div>
+                    <div class="col-md-3 col-sm-12 button-cel">
+                        <a href="{{ url('/clinica/'.$id.'/edit') }}" class="btn btn-success">Cadastro</a>
+                    </div>
+                    <div class="col-md-3 col-sm-12 button-cel">
+                        <a href="{{ url('/clinica/'.$id) }}" class="btn btn-info">Visualizar Cadastro</a>
+                    </div>
+                     <div class="col-md-3 col-sm-12 button-cel">
+                        <a href="/chat" class="btn btn-default">Chat</a>
+                    </div>
+                    <div class="col-md-3 col-sm-12 button-cel">
+                        {{ Form::open(array('url' => 'clinica/' . $id)) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            {{ Form::submit('Deletar conta', array('class' => 'btn btn-danger')) }}
+                        {{ Form::close() }}
+                    </div>
+                        @else
+                    <div class="col-md-4 col-sm-12 button-cel">   
+                        <a href="{{ url('/login') }}">Login</a>
+                    </div>
+                    <div class="col-md-4 col-sm-12 button-cel">
+                        <a href="{{ url('/register') }}">Cadastro</a>
+                    </div>
+                    @endif
+                    </div>
+                </div>
+            @endif   
+            @endif  
+
 @endsection
